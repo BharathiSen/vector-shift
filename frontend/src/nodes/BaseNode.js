@@ -2,9 +2,38 @@ import React from 'react';
 import { Handle } from '@xyflow/react';
 import { Edit3, Trash2, Copy, MoreHorizontal } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useStore } from '../store';
 import './BaseNode.css';
 
 export const BaseNode = ({ id, label, icon, children, handles = [], selected }) => {
+  const onNodesChange = useStore((state) => state.onNodesChange);
+  const addNode = useStore((state) => state.addNode);
+  const getNodeID = useStore((state) => state.getNodeID);
+  const nodes = useStore((state) => state.nodes);
+
+  const handleDelete = (e) => {
+    e.stopPropagation();
+    onNodesChange([{ type: 'remove', id: id }]);
+  };
+
+  const handleDuplicate = (e) => {
+    e.stopPropagation();
+    const currentNode = nodes.find(n => n.id === id);
+    if (!currentNode) return;
+
+    const newNodeID = getNodeID(currentNode.type);
+    const newNode = {
+      ...currentNode,
+      id: newNodeID,
+      position: {
+        x: currentNode.position.x + 40,
+        y: currentNode.position.y + 40,
+      },
+      selected: false,
+    };
+    addNode(newNode);
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, scale: 0.9 }}
@@ -15,9 +44,9 @@ export const BaseNode = ({ id, label, icon, children, handles = [], selected }) 
       {selected && (
         <div className="node-action-toolbar">
           <button className="toolbar-btn" title="Edit Properties"><Edit3 size={14} /></button>
-          <button className="toolbar-btn" title="Duplicate"><Copy size={14} /></button>
+          <button className="toolbar-btn" onClick={handleDuplicate} title="Duplicate"><Copy size={14} /></button>
           <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.1)', margin: '0 4px' }} />
-          <button className="toolbar-btn delete" title="Delete Node"><Trash2 size={14} /></button>
+          <button className="toolbar-btn delete" onClick={handleDelete} title="Delete Node"><Trash2 size={14} /></button>
         </div>
       )}
 

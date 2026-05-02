@@ -72,14 +72,23 @@ body {
   backdrop-filter: blur(4px) !important;
 }
 
+.react-flow__edge {
+  cursor: pointer;
+}
+
 .react-flow__edge-path {
-  stroke: #cbd5e1;
+  stroke: rgba(148, 163, 184, 0.4);
   stroke-width: 2.5;
-  transition: stroke 0.3s, stroke-width 0.3s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .react-flow__edge.selected .react-flow__edge-path {
   stroke: var(--primary);
+  stroke-width: 3.5;
+}
+
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: var(--primary-hover);
   stroke-width: 3.5;
 }
 
