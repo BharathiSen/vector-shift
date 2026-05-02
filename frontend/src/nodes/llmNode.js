@@ -1,8 +1,19 @@
+import { useState } from 'react';
 import { Position } from '@xyflow/react';
 import { BaseNode } from './BaseNode';
 import { Cpu } from 'lucide-react';
+import { useStore } from '../store';
 
-export const LLMNode = ({ id, selected }) => {
+export const LLMNode = ({ id, data, selected }) => {
+  const [model, setModel] = useState(data?.model || 'GPT-4o');
+  const [temp, setTemp] = useState(data?.temperature || '0.7');
+  const updateNodeField = useStore((state) => state.updateNodeField);
+
+  const handleModelChange = (e) => {
+    setModel(e.target.value);
+    updateNodeField(id, 'model', e.target.value);
+  };
+
   const handles = [
     { type: 'target', position: Position.Left, id: 'system', style: { top: `${100/3}%` } },
     { type: 'target', position: Position.Left, id: 'prompt', style: { top: `${200/3}%` } },
@@ -17,34 +28,32 @@ export const LLMNode = ({ id, selected }) => {
       icon={<Cpu size={18} />}
       handles={handles}
     >
-      <div className="node-content-description">
-        <p style={{ 
-          margin: 0, 
-          fontSize: '13px', 
-          lineHeight: '1.5', 
-          color: 'rgba(255, 255, 255, 0.7)' 
-        }}>
-          Process text using a foundation model. 
-        </p>
-        <div style={{ 
-          marginTop: '12px', 
-          padding: '8px', 
-          background: 'rgba(255, 255, 255, 0.03)', 
-          borderRadius: '8px', 
-          fontSize: '11px',
-          color: 'var(--text-muted)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '4px'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>Model:</span>
-            <span style={{ color: 'var(--primary)', fontWeight: 600 }}>GPT-4o</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>Temp:</span>
-            <span style={{ color: 'var(--primary)', fontWeight: 600 }}>0.7</span>
-          </div>
+      <div className="node-field">
+        <label>Model:</label>
+        <select value={model} onChange={handleModelChange} className="node-select">
+          <option value="GPT-4o">GPT-4o</option>
+          <option value="GPT-3.5-Turbo">GPT-3.5 Turbo</option>
+          <option value="Claude-3">Claude 3.5 Sonnet</option>
+        </select>
+      </div>
+      <div className="node-field">
+        <label>Temperature:</label>
+        <input 
+          type="range" 
+          min="0" 
+          max="1" 
+          step="0.1" 
+          value={temp} 
+          onChange={(e) => {
+            setTemp(e.target.value);
+            updateNodeField(id, 'temperature', e.target.value);
+          }}
+          className="node-input"
+        />
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: '#94a3b8' }}>
+          <span>Precise</span>
+          <span>{temp}</span>
+          <span>Creative</span>
         </div>
       </div>
     </BaseNode>

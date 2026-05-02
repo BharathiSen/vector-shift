@@ -10,10 +10,16 @@ export const BaseNode = ({ id, label, icon, children, handles = [], selected }) 
   const addNode = useStore((state) => state.addNode);
   const getNodeID = useStore((state) => state.getNodeID);
   const nodes = useStore((state) => state.nodes);
+  const [isEditing, setIsEditing] = React.useState(false);
 
   const handleDelete = (e) => {
     e.stopPropagation();
     onNodesChange([{ type: 'remove', id: id }]);
+  };
+
+  const handleEdit = (e) => {
+    e.stopPropagation();
+    setIsEditing(!isEditing);
   };
 
   const handleDuplicate = (e) => {
@@ -43,7 +49,13 @@ export const BaseNode = ({ id, label, icon, children, handles = [], selected }) 
       {/* Node Actions Toolbar - Only visible when selected */}
       {selected && (
         <div className="node-action-toolbar">
-          <button className="toolbar-btn" title="Edit Properties"><Edit3 size={14} /></button>
+          <button 
+            className={`toolbar-btn ${isEditing ? 'active' : ''}`} 
+            onClick={handleEdit}
+            title="Toggle Edit Mode"
+          >
+            <Edit3 size={14} />
+          </button>
           <button className="toolbar-btn" onClick={handleDuplicate} title="Duplicate"><Copy size={14} /></button>
           <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.1)', margin: '0 4px' }} />
           <button className="toolbar-btn delete" onClick={handleDelete} title="Delete Node"><Trash2 size={14} /></button>
@@ -79,7 +91,7 @@ export const BaseNode = ({ id, label, icon, children, handles = [], selected }) 
       </div>
 
       {/* Content */}
-      <div className="node-content">
+      <div className={`node-content ${isEditing ? 'editing' : 'view-only'}`}>
         {children}
       </div>
     </motion.div>
