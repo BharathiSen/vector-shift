@@ -149,11 +149,3 @@ export const PipelineUI = () => {
         </div>
     )
 }
-
-                <Controls />
-                <MiniMap />
-            </ReactFlow>
-        </div>
-        </>
-    )
-}
