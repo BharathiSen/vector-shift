@@ -27,23 +27,40 @@ body {
   background-color: transparent !important;
 }
 
+/* ReactFlow Controls (Zoom etc) Styling */
 .react-flow__controls {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-  border: none !important;
-  border-radius: 8px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
   overflow: hidden !important;
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(16px) !important;
+  padding: 4px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
 }
 
 .react-flow__controls button {
-  background: white !important;
-  border-bottom: 1px solid #f1f5f9 !important;
-  border-right: none !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  color: white !important;
   transition: all 0.2s !important;
+  margin-bottom: 0 !important;
+  width: 28px !important;
+  height: 28px !important;
 }
 
 .react-flow__controls button:hover {
-  background: #f8fafc !important;
-  color: var(--primary) !important;
+  background: var(--primary) !important;
+  color: white !important;
+}
+
+.react-flow__controls button svg {
+  fill: currentColor !important;
+  width: 14px !important;
+  height: 14px !important;
 }
 
 .react-flow__minimap {
