@@ -108,7 +108,7 @@ export const PipelineUI = () => {
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
-                onEdgesDelete={onEdgesDelete}
+                onDelete={({ edges }) => onEdgesDelete(edges)}
                 onDrop={onDrop}
                 onDragOver={onDragOver}
                 onInit={setReactFlowInstance}
