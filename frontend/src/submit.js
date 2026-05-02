@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 
@@ -10,6 +11,7 @@ const selector = (state) => ({
 export const SubmitButton = () => {
     const { nodes, edges } = useStore(selector, shallow);
     const [isLoading, setIsLoading] = useState(false);
+    const [result, setResult] = useState(null);
 
     const handleSubmit = async () => {
         setIsLoading(true);
@@ -27,17 +29,7 @@ export const SubmitButton = () => {
             }
 
             const data = await response.json();
-            
-            // Format and display the alert
-            const alertMessage = `
-Pipeline Analysis:
------------------
-Nodes: ${data.num_nodes}
-Edges: ${data.num_edges}
-Is DAG: ${data.is_dag ? '✅ Yes' : '❌ No (Contains cycles)'}
-            `.trim();
-
-            alert(alertMessage);
+            setResult(data);
         } catch (error) {
             console.error('Error submitting pipeline:', error);
             alert('Failed to analyze pipeline. Make sure the backend is running.');
@@ -101,10 +93,82 @@ Is DAG: ${data.is_dag ? '✅ Yes' : '❌ No (Contains cycles)'}
                     </span>
                 ) : 'Submit Pipeline'}
             </button>
+
+            {result && createPortal(
+                <div style={{
+                    position: 'fixed',
+                    top: '20px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 999999,
+                    width: 'auto',
+                    animation: 'slideDown 0.3s ease-out'
+                }}>
+                    <div style={{
+                        background: '#1a1a20',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        borderRadius: '20px',
+                        padding: '30px',
+                        minWidth: '320px',
+                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+                        color: '#fff',
+                        textAlign: 'left',
+                        backdropFilter: 'blur(16px)',
+                    }}>
+                        <h3 style={{ margin: '0 0 20px 0', fontSize: '18px', fontWeight: 600, color: 'var(--primary)' }}>
+                            Pipeline Analysis Result
+                        </h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                                <span style={{ color: '#94a3b8' }}>Nodes</span>
+                                <span style={{ fontWeight: 600 }}>{result.num_nodes}</span>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                                <span style={{ color: '#94a3b8' }}>Edges</span>
+                                <span style={{ fontWeight: 600 }}>{result.num_edges}</span>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px' }}>
+                                <span style={{ color: '#94a3b8' }}>Status</span>
+                                <span style={{ 
+                                    fontWeight: 700, 
+                                    color: result.is_dag ? '#10b981' : '#ef4444' 
+                                }}>
+                                    {result.is_dag ? 'DAG Established' : 'Cycle Detected'}
+                                </span>
+                            </div>
+                        </div>
+                        <button 
+                            onClick={() => setResult(null)}
+                            style={{
+                                width: '100%',
+                                marginTop: '24px',
+                                padding: '12px',
+                                borderRadius: '12px',
+                                border: 'none',
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                color: '#fff',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                transition: 'background 0.2s'
+                            }}
+                            onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
+                            onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.05)'}
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>,
+                document.body
+            )}
+
             <style>{`
                 @keyframes spin {
                     0% { transform: rotate(0deg); }
                     100% { transform: rotate(360deg); }
+                }
+                @keyframes slideDown {
+                    from { transform: translateY(-20px); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
                 }
             `}</style>
         </div>
