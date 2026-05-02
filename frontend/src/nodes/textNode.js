@@ -25,7 +25,7 @@ export const TextNode = ({ id, data, selected }) => {
     }
   }, [currText]);
 
-  const handleTextChange = (e) => {
+  const handleTextChange = async (e) => {
     const newValue = e.target.value;
     setCurrText(newValue);
     updateNodeField(id, 'text', newValue);
@@ -38,6 +38,7 @@ export const TextNode = ({ id, data, selected }) => {
       type: 'target',
       position: Position.Left,
       id: `var-${varName}`,
+      // Dynamic spacing based on number of variables
       style: { top: `${(index + 1) * (100 / (variables.length + 1))}%` }
     }))
   ];
@@ -58,8 +59,10 @@ export const TextNode = ({ id, data, selected }) => {
           className="node-input"
           style={{ 
             minHeight: '40px',
+            width: '100%',
             resize: 'none',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            boxSizing: 'border-box'
           }}
           placeholder="Type {{variable}} to add handles..."
         />
