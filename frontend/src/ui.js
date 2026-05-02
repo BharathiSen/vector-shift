@@ -66,7 +66,6 @@ export const PipelineUI = () => {
         (event) => {
           event.preventDefault();
     
-          const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
           if (event?.dataTransfer?.getData('application/reactflow')) {
             const appData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
             const type = appData?.nodeType;

@@ -46,7 +46,6 @@ export const SubmitButton = () => {
                 style={{
                     padding: '14px 40px',
                     borderRadius: '16px',
-                    border: 'none',
                     background: isLoading 
                         ? 'rgba(255, 255, 255, 0.1)' 
                         : 'var(--primary)',
