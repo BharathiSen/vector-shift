@@ -3,6 +3,8 @@ import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
 
+import { LogIn } from 'lucide-react';
+
 export const InputNode = ({ id, data, selected }) => {
   const [currName, setCurrName] = useState(data?.inputName || id.replace('customInput-', 'input_'));
   const [inputType, setInputType] = useState(data.inputType || 'Text');
@@ -29,6 +31,7 @@ export const InputNode = ({ id, data, selected }) => {
       id={id} 
       label="Input" 
       selected={selected}
+      icon={<LogIn size={18} />}
       handles={handles}
     >
       <div className="node-field">

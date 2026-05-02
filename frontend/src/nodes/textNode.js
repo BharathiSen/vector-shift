@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
+import { Type } from 'lucide-react';
 
 export const TextNode = ({ id, data, selected }) => {
   const [currText, setCurrText] = useState(data?.text || '{{input}}');
@@ -48,6 +49,7 @@ export const TextNode = ({ id, data, selected }) => {
       id={id} 
       label="Text" 
       selected={selected}
+      icon={<Type size={18} />}
       handles={handles}
     >
       <div className="node-field">

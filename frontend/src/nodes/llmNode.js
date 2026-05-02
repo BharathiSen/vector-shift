@@ -1,5 +1,6 @@
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
+import { Cpu } from 'lucide-react';
 
 export const LLMNode = ({ id, selected }) => {
   const handles = [
@@ -13,6 +14,7 @@ export const LLMNode = ({ id, selected }) => {
       id={id} 
       label="LLM" 
       selected={selected}
+      icon={<Cpu size={18} />}
       handles={handles}
     >
       <div className="node-text">
