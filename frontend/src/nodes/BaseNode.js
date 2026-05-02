@@ -11,13 +11,15 @@ export const BaseNode = ({ id, label, icon, children, handles = [], selected }) 
       animate={{ opacity: 1, scale: 1 }}
       className={`base-node ${selected ? 'selected' : ''} node-type-${label.toLowerCase().replace(/\s+/g, '-')}`}
     >
-      {/* Floating Action Toolbar */}
-      <div className="node-action-toolbar">
-        <button className="toolbar-btn" title="Edit Properties"><Edit3 size={14} /></button>
-        <button className="toolbar-btn" title="Duplicate"><Copy size={14} /></button>
-        <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.1)', margin: '0 4px' }} />
-        <button className="toolbar-btn delete" title="Delete Node"><Trash2 size={14} /></button>
-      </div>
+      {/* Node Actions Toolbar - Only visible when selected */}
+      {selected && (
+        <div className="node-action-toolbar">
+          <button className="toolbar-btn" title="Edit Properties"><Edit3 size={14} /></button>
+          <button className="toolbar-btn" title="Duplicate"><Copy size={14} /></button>
+          <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.1)', margin: '0 4px' }} />
+          <button className="toolbar-btn delete" title="Delete Node"><Trash2 size={14} /></button>
+        </div>
+      )}
 
       {/* Handles */}
       {handles.map((handle, index) => (

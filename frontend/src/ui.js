@@ -16,7 +16,7 @@ import { LogicNode } from './nodes/logicNode';
 import { IntegrationNode } from './nodes/integrationNode';
 import { TextFileNode } from './nodes/textFileNode';
 
-import 'reactflow/dist/style.css';
+import '@xyflow/react/dist/style.css';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
@@ -74,9 +74,9 @@ export const PipelineUI = () => {
               return;
             }
       
-            const position = reactFlowInstance.project({
-              x: event.clientX - reactFlowBounds.left,
-              y: event.clientY - reactFlowBounds.top,
+            const position = reactFlowInstance.screenToFlowPosition({
+              x: event.clientX,
+              y: event.clientY,
             });
 
             const nodeID = getNodeID(type);
