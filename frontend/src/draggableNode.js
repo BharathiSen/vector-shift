@@ -19,7 +19,7 @@ export const DraggableNode = ({ type, label }) => {
 
     const getIcon = (type) => {
         const iconSize = 18;
-        const iconColor = "#6366f1";
+        const iconColor = "var(--primary)";
         switch(type) {
             case 'customInput': return <LogIn size={iconSize} color={iconColor} />;
             case 'customOutput': return <LogOut size={iconSize} color={iconColor} />;
@@ -36,52 +36,45 @@ export const DraggableNode = ({ type, label }) => {
   
     return (
       <div
-        className={type}
+        className={`draggable-node ${type}`}
         onDragStart={(event) => onDragStart(event, type)}
         style={{ 
           cursor: 'grab', 
           width: '100%', 
-          height: '48px',
+          height: '52px',
           display: 'flex', 
           alignItems: 'center', 
-          borderRadius: '14px',
-          background: '#fff',
-          border: '1px solid rgba(226, 232, 240, 0.8)',
+          borderRadius: '12px',
+          background: 'rgba(255, 255, 255, 0.04)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
           padding: '0 16px',
-          fontSize: '14px',
-          fontWeight: 600,
-          color: '#334155',
-          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.02)',
-          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          gap: '12px',
-          boxSizing: 'border-box'
-        }} 
+          boxSizing: 'border-box',
+          transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+          userSelect: 'none'
+        }}
         draggable
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = '#6366f1';
-          e.currentTarget.style.transform = 'translateY(-2px)';
-          e.currentTarget.style.boxShadow = '0 12px 20px -5px rgba(99, 102, 241, 0.15)';
-          e.currentTarget.style.background = '#fefeff';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = 'rgba(226, 232, 240, 0.8)';
-          e.currentTarget.style.transform = 'translateY(0)';
-          e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.02)';
-          e.currentTarget.style.background = '#fff';
-        }}
       >
         <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center',
-          background: 'rgba(99, 102, 241, 0.08)',
-          width: '32px',
-          height: '32px',
-          borderRadius: '8px'
+            width: '32px', 
+            height: '32px', 
+            borderRadius: '8px', 
+            background: 'rgba(255, 255, 255, 0.04)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginRight: '12px',
+            flexShrink: 0
         }}>
-          {getIcon(type)}
+            {getIcon(type)}
         </div>
-        <span>{label}</span>
+        <span style={{ 
+            fontSize: '13px', 
+            fontWeight: 500, 
+            color: 'rgba(255, 255, 255, 0.9)',
+            letterSpacing: '-0.01em'
+        }}>
+            {label}
+        </span>
       </div>
     );
 };

@@ -11,10 +11,10 @@ function App() {
       </div>
       
       {/* Container for Sidebar + Content */}
-      <div style={{ display: 'flex', flex: 1, zIndex: 1, background: 'transparent' }}>
+      <div style={{ display: 'flex', width: '100%', zIndex: 1, background: 'transparent' }}>
         <PipelineToolbar />
         
-        <div style={{ flex: 1, position: 'relative', display: 'flex', flexDirection: 'column', background: 'transparent' }}>
+        <main style={{ flex: 1, position: 'relative', display: 'flex', flexDirection: 'column', background: 'transparent', overflow: 'hidden' }}>
           <div style={{ flex: 1, position: 'relative' }}>
             <PipelineUI />
           </div>
@@ -28,7 +28,7 @@ function App() {
           }}>
             <SubmitButton />
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );

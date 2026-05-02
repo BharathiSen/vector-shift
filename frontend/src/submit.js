@@ -56,31 +56,34 @@ Is DAG: ${data.is_dag ? '✅ Yes' : '❌ No (Contains cycles)'}
                     borderRadius: '16px',
                     border: 'none',
                     background: isLoading 
-                        ? '#94a3b8' 
-                        : 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
+                        ? 'rgba(255, 255, 255, 0.1)' 
+                        : 'var(--primary)',
                     color: '#fff',
                     fontSize: '15px',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     cursor: isLoading ? 'not-allowed' : 'pointer',
                     boxShadow: isLoading 
                         ? 'none' 
-                        : '0 10px 25px -5px rgba(99, 102, 241, 0.4)',
+                        : '0 8px 16px -4px rgba(157, 80, 255, 0.4)',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    letterSpacing: '0.05em',
-                    textTransform: 'uppercase',
+                    letterSpacing: '-0.01em',
                     position: 'relative',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    backdropFilter: 'blur(8px)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)'
                 }}
                 onMouseEnter={(e) => {
                     if (!isLoading) {
-                        e.target.style.transform = 'translateY(-3px) scale(1.02)';
-                        e.target.style.boxShadow = '0 20px 30px -5px rgba(99, 102, 241, 0.5)';
+                        e.target.style.transform = 'translateY(-2px) scale(1.02)';
+                        e.target.style.background = 'var(--primary-hover)';
+                        e.target.style.boxShadow = '0 12px 24px -6px rgba(157, 80, 255, 0.6)';
                     }
                 }}
                 onMouseLeave={(e) => {
                     if (!isLoading) {
                         e.target.style.transform = 'translateY(0) scale(1)';
-                        e.target.style.boxShadow = '0 10px 25px -5px rgba(99, 102, 241, 0.4)';
+                        e.target.style.background = 'var(--primary)';
+                        e.target.style.boxShadow = '0 8px 16px -4px rgba(157, 80, 255, 0.4)';
                     }
                 }}
             >

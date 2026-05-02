@@ -5,17 +5,18 @@ export const PipelineToolbar = () => {
         <div style={{ 
             width: '280px',
             background: 'var(--glass-bg)', 
-            backdropFilter: 'blur(20px)',
+            backdropFilter: 'blur(24px)',
             borderRight: '1px solid var(--glass-border)',
             display: 'flex',
-            flexDirection: 'column', gap: '24px',
-            padding: '32px 20px',
-            height: '100%',
-            overflowY: 'auto',
-            color: 'white'
+            flexDirection: 'column', 
+            height: '100vh',
+            position: 'sticky',
+            top: 0,
+            color: 'white',
+            zIndex: 10
         }}>
-            <div>
-                <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 700, color: 'white' }}>
+            <div style={{ padding: '32px 20px 20px 24px', flexShrink: 0 }}>
+                <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 700, color: 'white', letterSpacing: '-0.02em' }}>
                     VectorShift
                 </h2>
                 <p style={{ margin: '4px 0 0', fontSize: '12px', color: 'var(--text-muted)', fontWeight: 500 }}>
@@ -23,7 +24,14 @@ export const PipelineToolbar = () => {
                 </p>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+            <div className="custom-scrollbar" style={{ 
+                flex: 1, 
+                overflowY: 'auto', 
+                padding: '0 20px 32px 24px',
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '28px' 
+            }}>
                 <Category label="Input/Output">
                     <DraggableNode type='customInput' label='Input' />
                     <DraggableNode type='customOutput' label='Output' />
