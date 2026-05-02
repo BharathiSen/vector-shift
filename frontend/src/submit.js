@@ -16,7 +16,7 @@ export const SubmitButton = () => {
     const handleSubmit = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:8000/pipelines/parse', {
+const response = await fetch('https://vector-shift-backend-5x90.onrender.com/pipelines/parse', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
