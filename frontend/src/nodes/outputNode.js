@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Position } from 'reactflow';
+import { Position } from '@xyflow/react';
 import { BaseNode } from './BaseNode';
 import { LogOut } from 'lucide-react';
 

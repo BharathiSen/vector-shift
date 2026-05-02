@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --primary: #6366f1;
-  --primary-hover: #4f46e5;
-  --bg-main: #f8fafc;
-  --bg-canvas: #f1f5f9;
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.3);
+  --primary: #9d50ff;
+  --primary-hover: #b17aff;
+  --bg-main: #0a0a0a;
+  --bg-canvas: #0a0a0a;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --glass-bg: rgba(20, 20, 25, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -18,7 +18,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-main);
+  background-color: #000;
   color: var(--text-main);
   overflow: hidden;
 }

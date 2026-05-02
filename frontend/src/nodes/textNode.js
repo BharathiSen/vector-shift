@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Position } from 'reactflow';
+import { Position } from '@xyflow/react';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
 import { Type } from 'lucide-react';

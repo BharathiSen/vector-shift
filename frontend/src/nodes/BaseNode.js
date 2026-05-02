@@ -1,7 +1,7 @@
 import React from 'react';
-import { Handle } from 'reactflow';
+import { Handle } from '@xyflow/react';
 import { Edit3, Trash2, Copy, MoreHorizontal } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import './BaseNode.css';
 
 export const BaseNode = ({ id, label, icon, children, handles = [], selected }) => {

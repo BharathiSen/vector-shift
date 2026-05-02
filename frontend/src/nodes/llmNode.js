@@ -1,4 +1,4 @@
-import { Position } from 'reactflow';
+import { Position } from '@xyflow/react';
 import { BaseNode } from './BaseNode';
 import { Cpu } from 'lucide-react';
 

@@ -4,21 +4,21 @@ export const PipelineToolbar = () => {
     return (
         <div style={{ 
             width: '280px',
-            background: 'rgba(255, 255, 255, 0.7)', 
-            backdropFilter: 'blur(10px)',
-            borderRight: '1px solid rgba(226, 232, 240, 0.5)',
+            background: 'var(--glass-bg)', 
+            backdropFilter: 'blur(20px)',
+            borderRight: '1px solid var(--glass-border)',
             display: 'flex',
-            flexDirection: 'column',
-            gap: '24px',
+            flexDirection: 'column', gap: '24px',
             padding: '32px 20px',
             height: '100%',
-            overflowY: 'auto'
+            overflowY: 'auto',
+            color: 'white'
         }}>
             <div>
-                <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 700, color: '#1e293b' }}>
+                <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 700, color: 'white' }}>
                     VectorShift
                 </h2>
-                <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#64748b', fontWeight: 500 }}>
+                <p style={{ margin: '4px 0 0', fontSize: '12px', color: 'var(--text-muted)', fontWeight: 500 }}>
                     Studio Workspace
                 </p>
             </div>
