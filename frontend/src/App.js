@@ -8,8 +8,7 @@ function App() {
     <div style={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative', background: '#0a0a0a' }}>
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none', opacity: 0.6 }}>
         <LiquidEther />
-      </div>
-      
+      </div>     
       {/* Container for Sidebar + Content */}
       <div style={{ display: 'flex', width: '100%', zIndex: 1, background: 'transparent' }}>
         <PipelineToolbar />
